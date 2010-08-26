@@ -1,0 +1,30 @@
+SHELL MODE
+==========
+
+To use phpMyBackupPro you need to have it installed as described in INSTALL.txt.
+
+Then you can use the script like this and also as a cronjob:
+
+php backup.php db1[,db2,...] [1 [0 [0 [1 [path1,[path2,...]]]]]
+
+The first argument contains all databases you want to backup. They must be separated by commas.
+The second argument specifies whether tables should be backed up (1) or not (0).
+The third argument specifies whether data should be backed up (1) or not (0).
+The fourth argument specifies whether the backup should contain 'drop table ...' (1) or not (0).
+The fifth argument specifies whether the backup should be gzipped (1) or not (0).
+The sixth argument can contain the directory paths you want to backup. They must be separated by commas.
+FTP must be enabled in 'configuration' to use the directory backup function!
+
+All arguments but the first are optional.
+If you want to use for example the fifth argument, you have to specify all preceding parameters.
+
+
+Examples:
+
+  php backup.php db1 1 0 1
+Will backup the table structure of db1 and will add 'drop table ...' but will not save the data nor compress it.
+
+  php backup.php db1,db2 1 1 1 1 folder1/,../../folder2/,../folder3/folder4/
+Will backup db1 and db2 with data and structure, will add 'drop table ...' and will gzip the backups.
+Also the files in the directories folder1, folder2 and folder 4 will be saved to the FTP server.
+The files in folder3 will NOT be saved! 
