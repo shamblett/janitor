@@ -14,7 +14,7 @@ JN.panel.BackupPro = function(config) {
         ,bodyStyle: ''
         ,defaults: { collapsible: false ,autoHeight: true }
         ,items: [{
-            html: '<iframe style="overflow:auto;width:100%;height:100%;" frameborder="0"  scrolling="yes" src="'+JN.config.backuppro_url+'"></iframe>'
+            html: '<iframe style="overflow:auto;width:100%;height:650px;" frameborder="0"  scrolling="yes" src="'+JN.config.backuppro_url+'"></iframe>'
             ,border: false
             ,cls: 'modx-page-header'
             ,id: 'jn-backuppro-header'
