@@ -16,6 +16,7 @@ JN = function(config) {
         ,sqlbuddy_url: MODx.config.assets_url+'components/janitor/sqlbuddy'
         ,backuppro_url: MODx.config.assets_url+'components/janitor/phpmybackuppro'
         ,phpwebftp_url: MODx.config.assets_url+'components/janitor/phpwebftp'
+        ,docfinder_url: MODx.config.assets_url+'components/janitor/docfinder'
     });
     JN.superclass.constructor.call(this,config);
     this.config = config;
@@ -67,6 +68,8 @@ JN.panel.Home = function(config) {
                 xtype: 'jn-panel-backuppro'
           },{
                 xtype: 'jn-panel-phpwebftp'
+          },{
+		xtype: 'jn-panel-docfinder'
           },{
                 title: _('menu_log_tab')
                 ,items: [{

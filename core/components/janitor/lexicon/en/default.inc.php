@@ -16,6 +16,7 @@ $_lang['janitor'] = 'Janitor';
 $_lang['menu_janitor'] = 'Janitor';
 $_lang['menu_welcome_tab'] = 'Welcome';
 $_lang['menu_sqlbuddy_tab'] = 'Database';
+$_lang['menu_docfinder_tab'] = 'Search';
 $_lang['menu_backuppro_tab'] = 'Backup';
 $_lang['menu_phpwebftp_tab'] = 'FTP';
 $_lang['menu_upgrade_tab'] = 'Upgrade';
@@ -60,7 +61,9 @@ $_lang['welcome_text_4'] = '<br><p style="font-size:14px; text-align:left; margi
 $_lang['welcome_text_5'] = '<p style="font-size:14px; text-align:left; margin-right:25%; margin-left:5%;"><b>Backup</b> Uses
                            phpMyBackupPro as a general purpose database backup tool.</p>
                            <p style="font-size:14px; text-align:left; margin-right:25%; margin-left:5%;"><b>FTP</b> Uses
-                           phpWebFTP as a lightweight graphical FTP utility.</p>';
+                           phpWebFTP as a lightweight graphical FTP utility.</p>
+                           <p style="font-size:14px; text-align:left; margin-right:25%; margin-left:5%;"><b>Search</b> Uses
+                           Evolutions DocFinder module as a site serach utility.</p>';
 $_lang['welcome_text_6'] = '<p style="font-size:14px; text-align:left; margin-right:25%; margin-left:5%;"><b>Logs</b> Allows log file management. </p>
                            <p style="font-size:14px; text-align:left; margin-right:25%; margin-left:5%;"><b>Upgrade</b> Prepares the site for an upgrade.</p>
                            <p style="font-size:14px; text-align:left; margin-right:25%; margin-left:5%;"><b>Events</b> Scheduled event handling. </p>';

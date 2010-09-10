@@ -38,15 +38,9 @@ unset($modxConn,
 
 /* Unset the variables we introduced from the config.inc.php
  * that are not MODx specific, ie dont start with modx_ so we don't
- * contaminate downstream.
+ * contaminate downstream. Not database variables, see below.
  */
-unset($database_type,
-      $database_server,
-      $database_user,
-      $database_password,
-      $database_connection_charset,
-      $dbase,
-      $table_prefix,
+unset($table_prefix,
       $lastInstallTime,
       $site_id,
       $site_sessionname,
@@ -55,3 +49,44 @@ unset($database_type,
       $url_scheme,
       $http_host,
       $site_url);
+
+/* Caller specific initialisation */
+
+/* Create a MODx object */
+if ( isset($modx_create_object) ) {
+	
+	/* Create a MODx object as a manager */
+	define('IN_MANAGER_MODE',true);
+	include_once MODX_CORE_PATH . 'model/modx/modx.class.php';
+	$options = array();
+	$modx = new modX('', $options);
+	$modx->setDebug(E_ALL & ~E_NOTICE);
+	$modx->setLogLevel(modX::LOG_LEVEL_ERROR);
+	$modx->setLogTarget('FILE');
+	$modx->initialize('mgr');
+        $modxConfig = $modx->GetConfig();
+
+}
+	
+/* Preserve database variables */
+if ( isset($modx_preserve_database_variables) ) {
+	
+    /* Preserve them as modx_ variables */
+    $modx_database_type = $database_type;
+    $modx_database_server = $database_server;
+    $modx_database_user = $database_user;
+    $modx_database_password = $database_password;
+    $modx_database_connection_charset = $database_connection_charset;
+    $modx_dbase = $dbase;
+}
+
+/* Unset the original database variables */
+unset($database_type,
+      $database_server,
+      $database_user,
+      $database_password,
+      $database_connection_charset,
+      $dbase);     
+      
+      
+      

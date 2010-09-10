@@ -1,2 +1,12 @@
 
-Beta 1.1 first release
+Beta 1.2
+--------  
+
+1. Fixed issue 1, users of FF and IE should now have a correctly sized component window.
+
+2. Added the Evolution DocFinder module for use on the new Search tab.
+
+Beta 1.1 
+--------
+
+1. first release

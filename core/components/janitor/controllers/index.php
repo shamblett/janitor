@@ -27,6 +27,8 @@ $modx->regClientStartupScript($assetsUrl . 'js/sqlbuddy/sqlbuddy.js');
 $modx->regClientStartupScript($assetsUrl . 'js/phpmybackuppro/phpmybackuppro.js');
 /* PHPWebFTP*/
 $modx->regClientStartupScript($assetsUrl . 'js/phpwebftp/phpwebftp.js');
+/* DocFinder*/
+$modx->regClientStartupScript($assetsUrl . 'js/docfinder/docfinder.js');
 /* Logs */
 $modx->regClientStartupScript($assetsUrl . 'js/logs/logs.js');
 $modx->regClientStartupScript($assetsUrl . 'js/logs/mail.js');
