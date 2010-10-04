@@ -62,7 +62,7 @@
 		<form action="<?php echo htmlentities($_SERVER['REQUEST_URI']); ?>" method="post" target="main" id="docfinder" name="docfinder">
 			
 			<!-- headline -->
-			<h1>Adapted from the MODx Evolution Doc Finder module version 1.6</h1>
+			<h1>Search</h1>
 			
 			<!-- search options headline -->
 			<div class="sectionHeader">Search options</div>

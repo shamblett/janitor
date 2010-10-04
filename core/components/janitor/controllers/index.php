@@ -36,5 +36,7 @@ $modx->regClientStartupScript($assetsUrl . 'js/logs/mail.js');
 $modx->regClientStartupScript($assetsUrl . 'js/upgrade/upgrade.js');
 /* Events */
 $modx->regClientStartupScript($assetsUrl . 'js/events/events.js');
+/* Link Check */
+$modx->regClientStartupScript($assetsUrl . 'js/linkcheck/linkcheck.js');
 
 return $modx->smarty->fetch('jnindex.tpl');

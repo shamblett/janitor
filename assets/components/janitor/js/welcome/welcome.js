@@ -8,7 +8,7 @@
  */
 JN.panel.Welcome = function(config) {
     config = config || {};
-    var text1 = _('welcome_text_1') + '<img src="'+MODx.config.assets_url+'components/janitor/js/images/janitor.jpg' + '"align="left">';
+    var text1 = _('welcome_text_1') + '<img src="'+MODx.config.assets_url+'components/janitor/js/images/janitor.jpg' + '"align="left" height="500">';
     var text2 = text1 + _('welcome_text_2') + _('welcome_text_3') + _('welcome_text_4') + _('welcome_text_5') + _('welcome_text_6');
     var welcometext = text2 +  _('welcome_text_footer');
     Ext.applyIf(config,{

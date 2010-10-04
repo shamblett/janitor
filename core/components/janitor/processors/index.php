@@ -16,8 +16,6 @@ require_once dirname(dirname(__FILE__)).'/model/janitor/janitor.class.php';
 /* Load our main class */
 $jn = new Janitor($modx);
 
-/* initialize into a faux connector context to let JN know we dont want
- * to do mgr-specific actions, just processor ones
- */
-//return $pv->initialize('connector');
+/* initialize into a connector context */
+return $jn->initialize('connector');
 

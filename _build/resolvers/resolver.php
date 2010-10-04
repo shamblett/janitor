@@ -32,11 +32,51 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
 				break;
 			}
 			
+			/* Set the correct permissions for the tmp directory  */
+			$tmpPath = $modx->getOption('assets_path') . 'components/janitor/tmp';
+            $modx->log(xPDO::LOG_LEVEL_INFO,"Setting file permissions for tmp directory");
+ 
+            $result = chmod($tmpPath, 0777);
+            if ( !$result ) {
+				$modx->log(xPDO::LOG_LEVEL_INFO,"Failed to set permissions on tmp directory");
+				$success = false;
+				break;
+			}
+			
 			$success = true;
 			break;
 			
         case xPDOTransport::ACTION_UPGRADE:
             
+            /* Set the correct permissions for phpMyBackupPro */
+			$xfigPath = $modx->getOption('assets_path') . 'components/janitor/phpmybackuppro/xfig/';
+            $modx->log(xPDO::LOG_LEVEL_INFO,"Setting file permissions for phpMyBackupPro");
+ 
+            $result = chmod($xfigPath.'export', 0777);
+            if ( !$result ) {
+				$modx->log(xPDO::LOG_LEVEL_INFO,"Failed to set permissions on export directory");
+				$success = false;
+				break;
+			}
+			
+            $result = chmod($xfigPath.'global_conf.php', 0777);
+			if ( !$result ) {
+				$modx->log(xPDO::LOG_LEVEL_INFO,"Failed to set permissions on global_conf file");
+				$success = false;
+				break;
+			}
+			
+			/* Set the correct permissions for the tmp directory  */
+			$tmpPath = $modx->getOption('assets_path') . 'components/janitor/tmp';
+            $modx->log(xPDO::LOG_LEVEL_INFO,"Setting file permissions for tmp directory");
+ 
+            $result = chmod($tmpPath, 0777);
+            if ( !$result ) {
+				$modx->log(xPDO::LOG_LEVEL_INFO,"Failed to set permissions on tmp directory");
+				$success = false;
+				break;
+			}
+			
             $success = true;
             break;
             

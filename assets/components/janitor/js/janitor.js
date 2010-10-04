@@ -89,6 +89,12 @@ JN.panel.Home = function(config) {
                  ,items: [{
                     xtype: 'jn-panel-events'
                  }]
+             },{
+
+                 title: _('menu_linkcheck_tab')
+                 ,items: [{
+                    xtype: 'jn-panel-linkcheck'
+                 }]
             }]
     });
     JN.panel.Home.superclass.constructor.call(this,config);

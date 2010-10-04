@@ -1,4 +1,11 @@
 
+Beta 1.3
+--------  
+
+1. Link Checker tab added
+
+2. Some layout tidy ups across the board.
+
 Beta 1.2
 --------  
 

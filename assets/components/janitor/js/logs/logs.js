@@ -15,7 +15,7 @@ JN.panel.Logs = function(config) {
             collapsible: false ,
             autoHeight: true
         }
-        ,border: true
+        ,border: false
         ,title: _('menu_logs')
         ,header: true
         ,layout : 'form'
@@ -27,11 +27,12 @@ JN.panel.Logs = function(config) {
         {
             id: 'jn-log-fieldset'
             ,xtype: 'fieldset'
-            ,width: 400
+            ,border: false
             ,items: [{
                 xtype: 'radiogroup'
                 ,labelSeparator: ''
-                ,width: 300
+                ,columns: 1
+                ,border: false
                 ,items: [{
                     id: 'jn-ct-revolution-manager-log'
                     ,xtype: 'checkbox'

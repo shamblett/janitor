@@ -15,10 +15,11 @@ JN.panel.LogsMail = function(config) {
             collapsible: false ,
             autoHeight: true
         }
-        ,border: true
+        ,border: false
         ,header: true
         ,title: _('menu_logs_mail')
         ,layout : 'form'
+        ,bodyStyle: 'padding: 15px 15px 15px 0;'
         ,url: JN.config.connector_url
         ,baseParams: {
             action: 'logs/mail'
@@ -27,17 +28,15 @@ JN.panel.LogsMail = function(config) {
              xtype: 'textfield'
              ,name: 'mail-account'
              ,id: 'jn-ct-mail-account'
-             ,width: 400
              ,fieldLabel: _('log_mail_account')
-             ,border: true
+             ,border: false
         },{
             id: 'jn-log-mail-fieldset'
             ,xtype: 'fieldset'
-            ,width: 400
             ,items: [{
                 xtype: 'radiogroup'
                 ,labelSeparator: ''
-                ,width: 300
+                ,columns: 1
                 ,items: [{
                     id: 'jn-ct-log-mail-activate-log'
                     ,xtype: 'radio'

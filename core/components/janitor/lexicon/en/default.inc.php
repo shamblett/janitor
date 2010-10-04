@@ -32,6 +32,11 @@ $_lang['activate_log_mail'] = 'Activate';
 $_lang['deactivate_log_mail'] = 'Deactivate';
 $_lang['truncationfailed'] = "Log file truncation failed ";
 $_lang['truncationsuccess'] = "Log file truncation succeded ";
+$_lang['linkcheckfailed'] = "The link check has failed - Sorry! ";
+$_lang['linkchecktimedout'] = "The link check has timed out - Sorry! ";
+$_lang['linkchecknophpxml'] = "Oops! You don't have the PHP XML extension installed - Link Checker needs this";
+$_lang['linkchecksuccess'] = "The link check has completed";
+$_lang['linkcheckinvalidresource'] = "The entered resource is invalid";
 $_lang['errormailfailed'] = "Mail log errors failed ";
 $_lang['errormailsuccess'] = "Mail log errors succeded ";
 $_lang['failedtosavemaillog'] = 'Failed to save the mail error log system settings';
@@ -47,6 +52,13 @@ $_lang['button_site_upgrade'] = "Prepare";
 $_lang['truncate_manager_failed'] = 'Failed to truncate the Manager Log';
 $_lang['truncate_event_failed'] = 'Failed to truncate the Manager Log';
 $_lang['unknownerror'] = 'Unknown error';
+$_lang['menu_linkcheck_tab'] = "Link Check";
+$_lang['menu_linkcheck'] = "Link Check";
+$_lang['menu_linkcheck_resource'] = "Resource Id";
+$_lang['menu_linkcheck_children'] = "Children";
+$_lang['linkcheck_instructions'] ='<p style="font-size:16px; text-align:left; margin-right:5%; margin-left:5%;">Press the check button to check the validity of your sites links</p>';
+$_lang['linkcheck_checking'] = 'Checking Links....';
+$_lang['button_linkcheck'] = "Check";
 $_lang['janitor.desc'] = 'A component to assist with site maintenance tasks';
 $_lang['welcome_text_1'] = '<br><p style="font-size:20px; text-align:center; margin-right:25%; margin-left:5%;">Welcome to the Janitor Revolution 3PC.</p>';
 $_lang['welcome_text_2'] = '<br><p style="font-size:16px; text-align:left; margin-right:25%; margin-left:5%;">A Janitor is defined as someone who
@@ -63,11 +75,13 @@ $_lang['welcome_text_5'] = '<p style="font-size:14px; text-align:left; margin-ri
                            <p style="font-size:14px; text-align:left; margin-right:25%; margin-left:5%;"><b>FTP</b> Uses
                            phpWebFTP as a lightweight graphical FTP utility.</p>
                            <p style="font-size:14px; text-align:left; margin-right:25%; margin-left:5%;"><b>Search</b> Uses
-                           Evolutions DocFinder module as a site serach utility.</p>';
+                           Evolutions DocFinder module as a site search utility.</p>';
 $_lang['welcome_text_6'] = '<p style="font-size:14px; text-align:left; margin-right:25%; margin-left:5%;"><b>Logs</b> Allows log file management. </p>
                            <p style="font-size:14px; text-align:left; margin-right:25%; margin-left:5%;"><b>Upgrade</b> Prepares the site for an upgrade.</p>
-                           <p style="font-size:14px; text-align:left; margin-right:25%; margin-left:5%;"><b>Events</b> Scheduled event handling. </p>';
-$_lang['welcome_text_footer'] = '<br/><br/><br/><br/><br/><br/><i><p style="font-size:16px; text-align:left; margin-right:25%; margin-left:5%;">Designed and
+                           <p style="font-size:14px; text-align:left; margin-right:25%; margin-left:5%;"><b>Events</b> Scheduled event handling. </p>
+                           <p style="font-size:14px; text-align:left; margin-right:25%; margin-left:5%;"><b>Link Check</b> Checks
+                           the sites links for validity.</p>';
+$_lang['welcome_text_footer'] = '<br/><br/><br/><br/><i><p style="font-size:16px; text-align:left; margin-right:25%; margin-left:5%;">Designed and
                                  implemented for MODx Revolution by <a href="mailto:steve.hamblett@linux.com">S. Hamblett</a> incorporating ideas
                                  and suggestions from the MODx community.</p></i>';
 $_lang['upgrade_steps']= '<br><p style="font-size:16px; text-align:left; margin-right:5%; margin-left:5%;">This function prepares your installation for an upgrade, specifically it performs the following operations in order :-.</p>';
@@ -85,4 +99,5 @@ $_lang['upgrade_steps_list']= '<br/><p style="font-size:14px; text-align:left; m
                           The last step will log you out, any manager actions you perform will return you to the login screen,
                           you should now be able to perform your upgrade.</p><br/>';
 $_lang['event_desc'] = '<br><p style="font-size:16px; text-align:left; margin-right:5%; margin-left:5%;">
-                        Scheduled event handling is planned to go here, but not in this release!</p>';
+                        Scheduled event handling is planned to go here, but not in this release! You will be able to
+                        run snippets containing PHP code or chunks containing SQL on a timed basis.</p>';

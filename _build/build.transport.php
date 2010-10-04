@@ -27,7 +27,7 @@ echo '<pre>'; $modx->setLogTarget('ECHO');
 error_reporting(E_ALL); ini_set('display_errors', true);
 
 $name = 'janitor';
-$version = '1.2';
+$version = '1.3';
 $release = 'beta';
 
 $modx->loadClass('transport.modPackageBuilder', '', false, true);

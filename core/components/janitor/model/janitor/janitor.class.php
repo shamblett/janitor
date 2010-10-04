@@ -31,12 +31,19 @@ class Janitor {
     /* Constants */
     const MALLOGACTIVE = 1;
     const MAILLOGINACTIVE = 0;
+    const NO_RESOURCE = -1;
     
     /**
      * @var config local configuration settings
      * @access public
      */
     var $config = array();
+
+    /**
+     * @var temp directory
+     * @access public
+     */
+    var $tmpPath;
 
     /**#@+
      * Constructor
@@ -83,6 +90,9 @@ class Janitor {
                 $this->modx->smarty->assign('_lang', $this->modx->lexicon->fetch());
                 break;
         }
+
+        /* Get the temp directory path */
+        $this->tmpPath = $this->modx->getOption('assets_path') . 'components/janitor/tmp/';
 
     }
 
@@ -237,6 +247,94 @@ class Janitor {
           /* Always works for now */
           return true;
      }
+
+     /**
+     * Link Checker
+     *
+     * @access public
+     *
+     * @param $out the link check output
+     * @param $resource the resource to check
+     * @param $children children also
+     * @return $result, true on success
+     */
+     function runLinkCheck(&$out, &$errorstring, $resource, $children) {
+
+         $pages = array();
+         $pageData = array();
+
+         /* Check for PHP XML, if not present no point going any further */
+        if ( !class_exists('DOMDocument') ) {
+
+            $errorstring = $this->modx->lexicon('linkchecknophpxml');
+            return false;
+        }
+
+         /* Get the site URL */
+         $siteURL = $this->modx->getOption('site_url');
+         $siteURL .= 'index.php';
+
+         /* Build the link check arguments */
+         if ( $resource != Janitor::NO_RESOURCE ) {
+             
+             /* Specific resource */
+             $resourceObj = $this->modx->getObject('modResource',
+                                                 array('published' => 1,
+                                                       'id' => $resource));
+             if ( $resourceObj == NULL) {
+                 $errorstring = $this->modx->lexicon('linkcheckinvalidresource');
+                 return false;
+             }
+
+             $title = $resourceObj->get('pagetitle');
+             $pageData['page'] = $siteURL . "?id=" . $resource;
+             $pageData['title'] = $title;
+             $pages[] = $pageData;
+
+             /* Check for children and tag them on */
+             if ( $children ) {
+
+                 $resourceArray = $this->modx->getDocumentChildren($resource);
+                 foreach($resourceArray as $childResource ) {
+
+                    $id = $childResource['id'];
+                    $title = $childResource['pagetitle'];
+                    $pageData['page'] = $siteURL . "?id=" . $id;
+                    $pageData['title'] = $title;
+                    $pages[] = $pageData;
+                 }
+             }
+
+         } else {
+             
+            /* All published */
+            $published = $this->modx->getCollection('modResource',
+                                                 array('published' => 1));
+            foreach ( $published as $checkResource ) {
+                $id = $checkResource->get('id');
+                $title = $checkResource->get('pagetitle');
+                $pageData['page'] = $siteURL . "?id=" . $id;
+                $pageData['title'] = $title;
+                $pages[] = $pageData;
+            }
+         }
+
+         /* Include and run the external link checker */
+         include 'libraries/linkchecker/linche.php';
+         $checker = new LinkCheck();
+         $checker->runCheck($pages, $this->tmpPath);
+
+         /* Return the results */
+         $outFile = $checker->getLogFile();
+         $log = file_get_contents($outFile);
+         $summary = $checker->getSummary();
+         $out['log'] = $log;
+         $out['summary'] = $summary;
+
+         return true;
+
+     }
+
 
      /**
      * Delete directory helper function
