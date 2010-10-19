@@ -11,6 +11,7 @@ JN.panel.LogsMail = function(config) {
     config = config || {};
     Ext.applyIf(config,{
         id: 'jn-panel-logs-mail'
+        ,cls: 'modx-resource-tab'
         ,defaults: {
             collapsible: false ,
             autoHeight: true

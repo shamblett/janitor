@@ -1,4 +1,13 @@
 
+Beta 1.4
+--------  
+
+1. Extplorer added as the defualt FTP client and file explorer, issue 2
+
+2. Issue 3 fixed.
+
+3. Some layout tidy ups across the board.
+
 Beta 1.3
 --------  
 

@@ -15,10 +15,10 @@
 $_lang['janitor'] = 'Janitor';
 $_lang['menu_janitor'] = 'Janitor';
 $_lang['menu_welcome_tab'] = 'Welcome';
-$_lang['menu_sqlbuddy_tab'] = 'Database';
-$_lang['menu_docfinder_tab'] = 'Search';
-$_lang['menu_backuppro_tab'] = 'Backup';
-$_lang['menu_phpwebftp_tab'] = 'FTP';
+$_lang['menu_database_tab'] = 'Database';
+$_lang['menu_search_tab'] = 'Search';
+$_lang['menu_backup_tab'] = 'Backup';
+$_lang['menu_ftp_tab'] = 'FTP';
 $_lang['menu_upgrade_tab'] = 'Upgrade';
 $_lang['menu_log_tab'] = 'Logs';
 $_lang['menu_events_tab'] = 'Events';
@@ -73,7 +73,7 @@ $_lang['welcome_text_4'] = '<br><p style="font-size:14px; text-align:left; margi
 $_lang['welcome_text_5'] = '<p style="font-size:14px; text-align:left; margin-right:25%; margin-left:5%;"><b>Backup</b> Uses
                            phpMyBackupPro as a general purpose database backup tool.</p>
                            <p style="font-size:14px; text-align:left; margin-right:25%; margin-left:5%;"><b>FTP</b> Uses
-                           phpWebFTP as a lightweight graphical FTP utility.</p>
+                           Extplorer as a graphical FTP and file explorer utility.</p>
                            <p style="font-size:14px; text-align:left; margin-right:25%; margin-left:5%;"><b>Search</b> Uses
                            Evolutions DocFinder module as a site search utility.</p>';
 $_lang['welcome_text_6'] = '<p style="font-size:14px; text-align:left; margin-right:25%; margin-left:5%;"><b>Logs</b> Allows log file management. </p>
@@ -101,3 +101,6 @@ $_lang['upgrade_steps_list']= '<br/><p style="font-size:14px; text-align:left; m
 $_lang['event_desc'] = '<br><p style="font-size:16px; text-align:left; margin-right:5%; margin-left:5%;">
                         Scheduled event handling is planned to go here, but not in this release! You will be able to
                         run snippets containing PHP code or chunks containing SQL on a timed basis.</p>';
+$_lang['summaryarea'] = "Summary......";
+$_lang['reportarea'] = "Report......";
+$_lang['linkchecknotmpdir'] = "Oops! Your tmp directory is not writeable - Link Checker needs this";

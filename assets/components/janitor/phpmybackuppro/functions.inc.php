@@ -1082,7 +1082,7 @@ function PMBP_get_db_list() {
 
 // in dependency on $mode different modes can be selected (see below)
 function PMBP_file_info($mode,$path) {
-    $filename=ereg_replace(".*/","",$path);
+    $filename=preg_replace("#.*/#","",$path);
     $parts=explode(".",$filename);
 
     switch($mode) {

@@ -15,7 +15,7 @@ JN = function(config) {
         ,core_path : MODx.config.core_path
         ,sqlbuddy_url: MODx.config.assets_url+'components/janitor/sqlbuddy'
         ,backuppro_url: MODx.config.assets_url+'components/janitor/phpmybackuppro'
-        ,phpwebftp_url: MODx.config.assets_url+'components/janitor/phpwebftp'
+        ,extplorer_url: MODx.config.assets_url+'components/janitor/extplorer'
         ,docfinder_url: MODx.config.assets_url+'components/janitor/docfinder'
     });
     JN.superclass.constructor.call(this,config);
@@ -67,16 +67,18 @@ JN.panel.Home = function(config) {
           },{
                 xtype: 'jn-panel-backuppro'
           },{
-                xtype: 'jn-panel-phpwebftp'
+                xtype: 'jn-panel-extplorer'
           },{
 		xtype: 'jn-panel-docfinder'
           },{
                 title: _('menu_log_tab')
                 ,items: [{
-                        html:'<br/><br/>'
-                        ,xtype: 'jn-panel-logs'
+                            xtype: 'jn-panel-logs'
                         },{
-                        xtype: 'jn-panel-logs-mail'
+                            html: '<br/><br/>'
+                            ,border: false
+                        },{
+                            xtype: 'jn-panel-logs-mail'
                         }]
             },{
                  title: _('menu_upgrade_tab')

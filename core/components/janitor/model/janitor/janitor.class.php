@@ -263,12 +263,19 @@ class Janitor {
          $pages = array();
          $pageData = array();
 
-         /* Check for PHP XML, if not present no point going any further */
+        /* Check for PHP XML, if not present no point going any further */
         if ( !class_exists('DOMDocument') ) {
 
             $errorstring = $this->modx->lexicon('linkchecknophpxml');
             return false;
         }
+
+        /* Check for the tmp directory being present, if not no need to continue */
+        if ( !is_writeable($this->tmpPath)) { 
+
+            $errorstring = $this->modx->lexicon('linkchecknotmpdir');
+            return false;
+        } 
 
          /* Get the site URL */
          $siteURL = $this->modx->getOption('site_url');
@@ -277,7 +284,11 @@ class Janitor {
          /* Build the link check arguments */
          if ( $resource != Janitor::NO_RESOURCE ) {
              
-             /* Specific resource */
+             /* Specific resource, trim it to remove the [[~]] notation if it has
+              * been dragged from the resource tree 
+              */
+             $resource = rtrim($resource, ']]');
+             $resource = ltrim($resource, '[[~');
              $resourceObj = $this->modx->getObject('modResource',
                                                  array('published' => 1,
                                                        'id' => $resource));

@@ -25,7 +25,7 @@
 
 // MODx security hook and module integration
 $modx_create_object = true;
-include '../common/modx.php';//error_reporting(E_ALL);
+require_once  dirname(dirname(__FILE__)) . "/common/modx.php";
 
 // set PHP version
 $phpversion=intval(substr(phpversion(), 0, 1));

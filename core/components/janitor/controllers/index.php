@@ -21,14 +21,14 @@ $assetsUrl = $modx->getOption('janitor.assets_url',null,$modx->getOption('assets
 $modx->regClientStartupScript($assetsUrl .'js/janitor.js');
 /*  Welcome */
 $modx->regClientStartupScript($assetsUrl . 'js/welcome/welcome.js');
-/*  SQL Buddy */
-$modx->regClientStartupScript($assetsUrl . 'js/sqlbuddy/sqlbuddy.js');
-/* BackupPro */
-$modx->regClientStartupScript($assetsUrl . 'js/phpmybackuppro/phpmybackuppro.js');
-/* PHPWebFTP*/
-$modx->regClientStartupScript($assetsUrl . 'js/phpwebftp/phpwebftp.js');
-/* DocFinder*/
-$modx->regClientStartupScript($assetsUrl . 'js/docfinder/docfinder.js');
+/*  Database */
+$modx->regClientStartupScript($assetsUrl . 'js/database/sqlbuddy.js');
+/* Backup */
+$modx->regClientStartupScript($assetsUrl . 'js/backup/phpmybackuppro.js');
+/* FTP*/
+$modx->regClientStartupScript($assetsUrl . 'js/ftp/extplorer.js');
+/* Search */
+$modx->regClientStartupScript($assetsUrl . 'js/search/docfinder.js');
 /* Logs */
 $modx->regClientStartupScript($assetsUrl . 'js/logs/logs.js');
 $modx->regClientStartupScript($assetsUrl . 'js/logs/mail.js');

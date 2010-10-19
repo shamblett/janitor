@@ -11,6 +11,7 @@ JN.panel.LinkCheck = function(config) {
     config = config || {};
     Ext.applyIf(config,{
         id: 'jn-panel-linkcheck'
+        ,cls: 'modx-resource-tab'
         ,defaults: {
             collapsible: false ,
             autoHeight: true
@@ -40,10 +41,15 @@ JN.panel.LinkCheck = function(config) {
              ,fieldLabel: _('menu_linkcheck_children')
         },{
 
+             html: '<br/>'
+             ,border: false
+        },{
+
             xtype: 'textarea'
             ,name: 'jn-linkcheck-ta-summary'
             ,id: 'jn-linkcheck-ta-summary-id'
             ,hideLabel: true
+            ,emptyText: _('summaryarea')
             ,anchor: '97%'
             ,grow: true
 
@@ -52,6 +58,7 @@ JN.panel.LinkCheck = function(config) {
             xtype: 'textarea'
             ,name: 'jn-linkcheck-ta'
             ,id: 'jn-linkcheck-ta-id'
+            ,emptyText: _('reportarea')
             ,hideLabel: true
             ,anchor: '97%'
             ,grow: true

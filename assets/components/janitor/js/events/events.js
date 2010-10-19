@@ -11,6 +11,7 @@ JN.panel.Events = function(config) {
     config = config || {};
     Ext.applyIf(config,{
         id: 'jn-panel-events'
+        ,cls: 'modx-resource-tab'
         ,defaults: {
             collapsible: false ,
             autoHeight: true

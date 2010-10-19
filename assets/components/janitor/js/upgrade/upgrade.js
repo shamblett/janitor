@@ -11,6 +11,7 @@ JN.panel.Upgrade = function(config) {
     config = config || {};
     Ext.applyIf(config,{
         id: 'jn-panel-upgrade'
+        ,cls: 'modx-resource-tab'
         ,defaults: {
             collapsible: false ,
             autoHeight: true
@@ -19,6 +20,7 @@ JN.panel.Upgrade = function(config) {
         ,title: _('menu_upgrade')
         ,header: true
         ,layout : 'form'
+        ,bodyStyle: 'padding: 15px 15px 15px 0;'
         ,url: JN.config.connector_url
         ,baseParams: {
             action: 'upgrade/upgrade'
