@@ -712,13 +712,22 @@
 
 	function replace($searchString, $replaceString, $id, $searchFieldName, $searchFieldString, $table)
 	{
-		global $modx, $searchOptions;
+		global $modx, $searchOptions, $modx_database_server,
+               $modx_database_user, $modx_database_password,
+               $modx_dbase;
 
 		// take care of case _in_sensitive searches and do the PHP string replace
-		if($searchOptions['case_sensitive']) $searchFieldStringReplaced=str_replace($searchString, $replaceString, $searchFieldString);
-		else $searchFieldStringReplaced=str_ireplace($searchString, $replaceString, $searchFieldString);
+		if($searchOptions['case_sensitive']) {
+            $searchFieldStringReplaced=str_replace($searchString, $replaceString, $searchFieldString);
+        } else {
+            $searchString = '/' . $searchString . '/i';
+            $searchFieldStringReplaced=preg_replace($searchString, $replaceString, $searchFieldString);
+        }
 
-		$searchFieldStringReplaced=mysql_real_escape_string($searchFieldStringReplaced);
+        $link = mysql_connect($modx_database_server, $modx_database_user, $modx_database_password);
+        mysql_select_db($modx_dbase, $link);
+
+		$searchFieldStringReplaced=mysql_real_escape_string($searchFieldStringReplaced, $link);
 		
 		// update Database
 		$replaceResult=$modx->db->update($searchFieldName.'="'.$searchFieldStringReplaced.'"', $table, 'id="'.$id.'"');

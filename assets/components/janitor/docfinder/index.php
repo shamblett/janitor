@@ -25,6 +25,7 @@
 
 // MODx security hook and module integration
 $modx_create_object = true;
+$modx_preserve_database_variables = true;
 require_once  dirname(dirname(__FILE__)) . "/common/modx.php";
 
 // set PHP version
