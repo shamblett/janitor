@@ -64,7 +64,6 @@ if ( isset($modx_create_object) ) {
 	$modx->setLogLevel(modX::LOG_LEVEL_ERROR);
 	$modx->setLogTarget('FILE');
 	$modx->initialize('mgr');
-    $modx->db->connect();
     $modxConfig = $modx->GetConfig();
 
 }

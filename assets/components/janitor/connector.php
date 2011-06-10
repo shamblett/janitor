@@ -23,6 +23,6 @@ require_once MODX_CONNECTORS_PATH.'index.php';
 $corePath = $modx->config['core_path'].'components/janitor/';
 $modx->addPackage('janitor', $corePath.'model/');
 $modx->request->handleRequest(array(
-    'processors_path' => $corePath.'processors',
+    'processors_path' => $corePath.'processors/',
     'location' => '',
 ));

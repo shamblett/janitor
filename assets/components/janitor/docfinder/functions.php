@@ -222,7 +222,8 @@
 					if($searchResults['published']) $pagetitle_class.=" published";
 
 					// check document type
-					if($modx->getDocumentChildren($searchResults['id'])) $iconName="folder.gif";
+                    $children = $modx->getChildIds($searchResults['id']);
+					if(!empty($children)) $iconName="folder.gif";
 					else $iconName="page.gif";
 
 					// output result
@@ -511,7 +512,7 @@
 		$searchFieldArray=explode(", ", $sqlSelection);
 		
 		// search in all defined fields
-		$dbTable=$modx->getFullTableName("site_content");
+		$dbTable=$modx->getTableName("modResource");
 		foreach($searchFieldArray as $searchField)
 		{
 			// Filter: Check where to search in and where to skip
@@ -539,10 +540,10 @@
 			$sql="SELECT $sqlSelection FROM $dbTable $sqlWhere";
 
 			// query DB via MODx DB API
-			$result=$modx->db->query($sql);
+			$result=$modx->query($sql);
 
 			// get rows
-			while($row=$modx->db->getRow($result))
+			while($row=$result->fetch(PDO::FETCH_ASSOC))
 			{
 				// check created date range
 				if($row['createdon']<$searchOptions['createdon_start_time'] or $row['createdon']>$searchOptions['createdon_end_time']) continue;
@@ -579,8 +580,8 @@
 		// search in TVs if required
 		if($searchOptions['tvs'] and $search['string']!="ALL")
 		{
-			$tableTV_Names=$modx->getFullTableName("site_tmplvars");
-			$tableTV_Content=$modx->getFullTableName("site_tmplvar_contentvalues");
+			$tableTV_Names=$modx->getTableName("modTemplateVar");
+			$tableTV_Content=$modx->getTableName("modTemplateVarResource");
 
 			// get SQL WHERE
 			$sqlWhere=getSqlWhere($search['string'], 'value', $searchOptions);
@@ -590,11 +591,11 @@
 			$sqlTVContent="SELECT contentid, value, tmplvarid, id FROM $tableTV_Content $sqlWhere";
 			
 			// query DB via MODx DB API
-			$resultTVNames=$modx->db->query($sqlTVNames);
-			$resultTVContent=$modx->db->query($sqlTVContent);
+			$resultTVNames=$modx->query($sqlTVNames);
+			$resultTVContent=$modx->query($sqlTVContent);
 
 			// get rows TV names
-			while($row=$modx->db->getRow($resultTVNames))
+			while( $row=$resultTVNames->fetch(PDO::FETCH_ASSOC) )
 			{
 				$id=$row['id'];
 				$name=$row['name'];
@@ -604,7 +605,7 @@
 			}
 
 			// get rows TV content
-			while($row=$modx->db->getRow($resultTVContent))
+			while( $row=$resultTVContent->fetch(PDO::FETCH_ASSOC) )
 			{
 				$id=$row['contentid'];
 				
@@ -614,22 +615,22 @@
 				{
 					$TV_varID=$row['tmplvarid'];
 					$TV_ID=$row['id'];
-					$document=$modx->getDocument($id);
+					$document=$modx->getObject('modResource', array('id' => $id));
 					
 					// check created date range
-					if($document['createdon']<$searchOptions['createdon_start_time'] or $document['createdon']>$searchOptions['createdon_end_time']) continue;
+					if($document->get('createdon')<$searchOptions['createdon_start_time'] or $document->get('createdon')>$searchOptions['createdon_end_time']) continue;
 
 					// check edited date range
-					if($document['editedon']<$searchOptions['editedon_start_time'] or $document['editedon']>$searchOptions['editedon_end_time']) continue;
+					if($document->get('editedon')<$searchOptions['editedon_start_time'] or $document->get('editedon')>$searchOptions['editedon_end_time']) continue;
 					
 					// save results in our results array
 					$searchResultsArray[$id]['id']=$id;
-					$searchResultsArray[$id]['pagetitle']=$document['pagetitle'];
-					$searchResultsArray[$id]['longtitle']=$document['longtitle'];
-					$searchResultsArray[$id]['published']=$document['published'];
-					$searchResultsArray[$id]['hidemenu']=$document['hidemenu'];
-					$searchResultsArray[$id]['createdon']=$document['createdon'];
-					$searchResultsArray[$id]['editedon']=$document['editedon'];
+					$searchResultsArray[$id]['pagetitle']=$document->get('pagetitle');
+					$searchResultsArray[$id]['longtitle']=$document->get('longtitle');
+					$searchResultsArray[$id]['published']=$document->get('published');
+					$searchResultsArray[$id]['hidemenu']=$document->get('hidemenu');
+					$searchResultsArray[$id]['createdon']=$document->get('createdon');
+					$searchResultsArray[$id]['editedon']=$document->get('editedon');
 					$searchResultsArray[$id]['found_in'].=", tv_".$TV_Names[$TV_varID]['name'];
 					
 					// replace
@@ -646,11 +647,11 @@
 		global $modx;
 
 		// determine DB tables
-		$dbShortTableArray['Templates']="site_templates";
-		$dbShortTableArray['TVs']="site_tmplvars";
-		$dbShortTableArray['Chunks']="site_htmlsnippets";
-		$dbShortTableArray['Snippets']="site_snippets";
-		$dbShortTableArray['Plugins']="site_plugins";
+		$dbShortTableArray['Templates']="modTemplate";
+		$dbShortTableArray['TVs']="modTemplateVar";
+		$dbShortTableArray['Chunks']="modChunk";
+		$dbShortTableArray['Snippets']="modSnippet";
+		$dbShortTableArray['Plugins']="modPlugin";
 		$dbShortTable=$dbShortTableArray[$area];
 
 		// determine SQL data selection 
@@ -665,7 +666,7 @@
 		$searchFieldArray=explode(", ", $sqlSelection);
 
 		// search in all defined fields
-		$dbTable=$modx->getFullTableName($dbShortTable);
+		$dbTable=$modx->getTableName($dbShortTable);
 		foreach($searchFieldArray as $searchField)
 		{
 			// Filter: Check where to search in and where to skip
@@ -685,10 +686,12 @@
 			$sql="SELECT $sqlSelection FROM $dbTable $sqlWhere";
 
 			// query DB via MODx DB API
-			$result=$modx->db->query($sql);
+			$result=$modx->query($sql);
 
-			// get rows
-			while($row=$modx->db->getRow($result))
+			if ( !is_object($result) ) continue;
+            
+            // get rows
+			while( $row=$result->fetch(PDO::FETCH_ASSOC) )
 			{
 				$id=$row['id'];
 
@@ -730,7 +733,9 @@
 		$searchFieldStringReplaced=mysql_real_escape_string($searchFieldStringReplaced, $link);
 		
 		// update Database
-		$replaceResult=$modx->db->update($searchFieldName.'="'.$searchFieldStringReplaced.'"', $table, 'id="'.$id.'"');
+        $fields = $searchFieldName.'="'.$searchFieldStringReplaced.'"';
+        $where = 'id="'.$id.'"';
+		$replaceResult=$modx->exec("UPDATE $table SET $fields WHERE $where");
 		
 		return $replaceResult;
 	}
@@ -808,17 +813,7 @@
 	{
 		global $modx;
 
-		// go up document tree
-		$counter=1;
-		while($document=$modx->getParent($id))
-		{
-			$id=$document['id'];
-			$parents[$id]=$id;
-		}
-
-		// don't forget the root parent
-		$parents[0]=0;
-
+        $parents = $modx->getParentIds($id);
 		return $parents;
 	}
 

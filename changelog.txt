@@ -1,4 +1,11 @@
 
+Beta 1.5
+--------
+
+1. Issue 9, update for use in Revo 2.1
+
+2. Issue 6. User Guid in PDF format
+
 Beta 1.4
 --------  
 
