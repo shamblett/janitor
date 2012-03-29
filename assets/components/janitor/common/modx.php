@@ -14,7 +14,7 @@
 
 /* Get the core config and config inc .php */
 require_once dirname(dirname(dirname(dirname(dirname(__FILE__))))) . "/config.core.php";
-require_once MODX_CORE_PATH . "/config/config.inc.php"; 
+require_once MODX_CORE_PATH.'config/'.MODX_CONFIG_KEY.'.inc.php';
 
 /* Check for a valid session, without using the MODx object */
 session_start();

@@ -1,4 +1,14 @@
 
+Beta 1.6
+--------
+1. JS updates for use with Revo 2.2
+
+2. Remove chmod code from resolver for phpmybackuppro
+
+3. Issue 7 - Allow config files defined by MODC config key constant
+
+4. Issue 8 - Search now starts on return key and search box has focus on tab entry
+
 Beta 1.5
 --------
 

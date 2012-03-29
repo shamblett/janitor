@@ -90,7 +90,8 @@
 						<p>
 							<!-- Label and input field -->
 							<label for="searchstring" class="text_label" id="search_field_text">String search:</label>
-							<input type="text" class="text" name="searchstring" id="searchstring" value="<?php echo $search['string']; ?>" onkeyup="triggerSubmitButtons();" />
+							<input type="text" class="text" name="searchstring" id="searchstring" value="<?php echo $search['string']; ?>" onkeyup="triggerSubmitButtons();" 
+                                                                     onkeydown="triggerSearch(event);"/>
 						
 							<!-- help button search -->
 							<?php $helpText="You can use AND, OR and NOT in your search and blanks for whole word searches. Alternatively you can use regular expressions if you activate it in the advanced search. Use ALL to get all results – if you are looking for a date range for example."; ?>

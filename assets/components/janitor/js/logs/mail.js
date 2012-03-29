@@ -91,6 +91,7 @@ Ext.extend(JN.panel.LogsMail,MODx.FormPanel,{
         this.initialized = true;
         
         this.fireEvent('ready');
+        return false;
     }
 
     ,beforeSubmit: function(o) {

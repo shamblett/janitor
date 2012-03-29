@@ -80,6 +80,7 @@ Ext.extend(JN.panel.Logs,MODx.FormPanel,{
         /* do any post-render actions here */
         this.initialized = true;
         this.fireEvent('ready');
+        return false;
     }
 
     ,beforeSubmit: function(o) {

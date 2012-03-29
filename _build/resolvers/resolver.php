@@ -25,13 +25,6 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
 				break;
 			}
 			
-            $result = chmod($xfigPath.'global_conf.php', 0775);
-			if ( !$result ) {
-				$modx->log(xPDO::LOG_LEVEL_INFO,"Failed to set permissions on global_conf file");
-				$success = false;
-				break;
-			}
-
 			/* Set the correct permissions for Extplorer */
 			$extplorerPath = $modx->getOption('assets_path') . 'components/janitor/extplorer/';
             $modx->log(xPDO::LOG_LEVEL_INFO,"Setting file permissions for Extplorer");

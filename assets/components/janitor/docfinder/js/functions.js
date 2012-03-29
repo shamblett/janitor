@@ -123,6 +123,9 @@ window.addEvent('load', function() {
 	
 	// set search field text when page loads
 	if($('regular_expression').getValue()=="on") toggleRegExpSearch();
+        
+        //Focus to the search box
+        $('searchstring').focus();
 	
 });
 
@@ -262,6 +265,15 @@ function triggerSubmitButtons()
 	if($('searchstring').value!="") $('submit').addClass('submit_active');
 	else $('submit').removeClass('submit_active');
 }
+
+function triggerSearch(event)
+{
+	//Trigger the search if return is pressed
+	if ( event.keyCode == 13){
+            $('submit_search').fireEvent('click');
+        }
+}
+
 
 function checkboxSelector(id)
 {
